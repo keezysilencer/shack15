@@ -35,13 +35,4 @@ contribute to innovative projects, ultimately driving community growth and succe
 
 ## Simulated Data and API Setup
 
-This app currently uses mock data for member profiles. To modify the sample data or integrate an API, follow these instructions:
-
-### For Simulated Data
-
-	1.	Edit Sample Data: Locate the member_service.dart file in the lib/services directory. You can modify the getDummyMembers() method to customize the member profiles displayed in the app. Update fields such as name, role, company, image URL, bio, and interests as needed.
-
-### For API Integration
-
-	1.	Replace Dummy Data: In the member_service.dart file, you will find the functions responsible for fetching data. Replace the simulated data fetching logic with your API calls. Make sure to handle responses and map the data to the Member model used in the app.
-	2.	Network Permissions: If you are using API calls, ensure that your app has the necessary permissions to access the internet. For Flutter, this typically involves configuring your AndroidManifest.xml for Android or Info.plist for iOS.
+This app currently uses mock data for member profiles.
