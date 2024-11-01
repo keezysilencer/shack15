@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../models/member_model.dart';
+import '../service/member_service.dart';
+import '../widgets/member_card.dart';
+import 'networking_swipe_screen.dart';
 
 class MemberDirectoryScreen extends StatefulWidget {
   @override
@@ -31,22 +37,33 @@ class _MemberDirectoryScreenState extends State<MemberDirectoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('SHACK15 Members', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        title: Text(
+          'SHACK15 Members',
+          style: GoogleFonts.playfairDisplay(
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 1,
+        iconTheme: const IconThemeData(color: Colors.black),
+        centerTitle: true,
       ),
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             color: Colors.white,
             child: TextField(
               onChanged: filterMembers,
+              style: GoogleFonts.lato(fontSize: 16, color: Colors.black87),
               decoration: InputDecoration(
                 hintText: 'Search members by name, company, or interests',
-                prefixIcon: Icon(Icons.search),
+                hintStyle: GoogleFonts.lato(color: Colors.black54),
+                prefixIcon: const Icon(Icons.search, color: Colors.black54),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
@@ -60,7 +77,7 @@ class _MemberDirectoryScreenState extends State<MemberDirectoryScreen> {
             child: RefreshIndicator(
               onRefresh: () async {
                 // Simulate refresh
-                await Future.delayed(Duration(seconds: 1));
+                await Future.delayed(const Duration(seconds: 1));
                 setState(() {
                   filterMembers(searchQuery);
                 });
@@ -75,6 +92,17 @@ class _MemberDirectoryScreenState extends State<MemberDirectoryScreen> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NetworkingSwipeScreen()),
+          );
+        },
+        child: const Icon(Icons.swap_horiz, color: Colors.white),
+        tooltip: 'Start Networking',
       ),
     );
   }
